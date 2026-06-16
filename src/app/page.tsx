@@ -30,6 +30,24 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
+  const [loadingPhase, setLoadingPhase] = useState(0);
+  const [displayProgress, setDisplayProgress] = useState(0);
+
+  useEffect(() => {
+    if (!loading) return;
+    const phaseInterval = setInterval(() => {
+      setLoadingPhase(p => (p < 2 ? p + 1 : p));
+    }, 2000);
+    
+    const progInterval = setInterval(() => {
+      setDisplayProgress(p => p < 100 ? p + 1 : 100);
+    }, 60); // 100 steps over ~6000ms
+
+    return () => {
+      clearInterval(phaseInterval);
+      clearInterval(progInterval);
+    };
+  }, [loading]);
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const textStartRef = useRef<HTMLDivElement>(null);
@@ -66,7 +84,7 @@ export default function Home() {
     const startAudio = () => {
       const flute = fluteRef.current;
       if (flute) {
-        flute.volume = 0.25;
+        flute.volume = 0.10;
         flute.play().catch(() => {
           // Autoplay blocked by browser, wait for interaction
           const playOnInteract = () => {
@@ -87,6 +105,7 @@ export default function Home() {
     gsap.registerPlugin(ScrollTrigger);
 
     const initSequence = async () => {
+      const loadStartTime = Date.now();
       try {
         const res = await fetch('/api/frames');
         const data = await res.json();
@@ -248,7 +267,25 @@ export default function Home() {
           };
           window.addEventListener('resize', handleResize);
 
-          setTimeout(() => setLoading(false), 500);
+          const elapsed = Date.now() - loadStartTime;
+          const remainingDelay = Math.max(0, 6000 - elapsed);
+          setTimeout(() => {
+            // First fade out the text and progress bar
+            gsap.to('.loading-content', {
+              opacity: 0,
+              duration: 1.0,
+              ease: "power2.inOut",
+              onComplete: () => {
+                // Then fade out the white background slowly to reveal the scroll page
+                gsap.to('#loading-screen', {
+                  opacity: 0,
+                  duration: 2.0,
+                  ease: "power2.inOut",
+                  onComplete: () => setLoading(false)
+                });
+              }
+            });
+          }, remainingDelay);
 
           return () => window.removeEventListener('resize', handleResize);
         }
@@ -297,15 +334,35 @@ export default function Home() {
         {isMuted ? mutedIcon : volumeIcon}
       </button>
 
-      {loading && (
+      {loading && (() => {
+        let loadingPhrase = "LOADING TEMPLE";
+        if (loadingPhase === 1) loadingPhrase = "GATHERING HISTORY";
+        else if (loadingPhase === 2) loadingPhrase = "ENTERING TEMPLE";
+        
+        return (
         <div id="loading-screen">
-          <div className="loading-text">Awakening</div>
-          <div className="progress-bar-container">
-            <div className="progress-bar" style={{ width: `${progress}%` }} />
+          <div className="loading-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%' }}>
+            <div className="loading-text wave-text" key={loadingPhrase}>
+              {loadingPhrase.split('').map((char, index) => (
+                <span
+                  key={`${char}-${index}`}
+                  style={{
+                    animationDelay: `${index * 0.05}s`,
+                    marginRight: char === ' ' ? '0.4em' : '0'
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
+            </div>
+            <div className="progress-bar-container">
+              <div className="progress-bar" style={{ width: `${displayProgress}%` }} />
+            </div>
+            <div className="percentage">{displayProgress}%</div>
           </div>
-          <div className="percentage">{progress}%</div>
         </div>
-      )}
+        );
+      })()}
 
       <div className="scroll-container" ref={containerRef}>
         <div className="canvas-wrapper">
@@ -316,7 +373,19 @@ export default function Home() {
 
         <div className="text-overlay" ref={textStartRef}>
           <div className="text-start">
-            <h1>Baskarajapuramm Welcomes</h1>
+            <h1 className="wave-text">
+              {"BHASKARARAJAPURAM WELCOMES".split('').map((char, index) => (
+                <span
+                  key={index}
+                  style={{
+                    animationDelay: `${index * 0.08}s`,
+                    marginRight: char === ' ' ? '0.4em' : '0'
+                  }}
+                >
+                  {char}
+                </span>
+              ))}
+            </h1>
           </div>
         </div>
 
