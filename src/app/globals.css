@@ -1,0 +1,495 @@
+:root {
+  --gold-primary: #e69138; /* creamy saffron */
+  --gold-light: #f6b26b; /* light creamy saffron */
+  --gold-dark: #b45f06; /* dark saffron */
+  --bg-color: #F6E8D0; /* Base Background */
+  --bg-color-alt: #F3E3C7; /* Alternate Section */
+  --card-bg: #FAF3E7; /* Card Background */
+  --border-accent: #C47A5A; /* Border Accent */
+  --text-color: #3b3331; /* smoke grey */
+  --maroon-primary: #8B2E2E; /* Heading Color */
+  --maroon-light: #a34e54;
+  --font-cormorant: 'Cormorant Garamond', serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--font-cormorant);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Loading Screen ─── */
+#loading-screen {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff; /* keep landing page pure white */
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  transition: opacity 1s ease-out;
+}
+
+.loading-text {
+  font-family: var(--font-cormorant);
+  font-size: 2rem;
+  color: var(--maroon-primary);
+  margin-bottom: 20px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+.progress-bar-container {
+  width: 300px;
+  height: 2px;
+  background-color: rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-primary), var(--maroon-primary));
+  width: 0%;
+  transition: width 0.1s linear;
+}
+
+.percentage {
+  margin-top: 15px;
+  font-size: 1rem;
+  color: var(--text-color);
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-style: italic;
+  letter-spacing: 0.08em;
+}
+
+/* ─── Scroll Container ─── */
+.scroll-container {
+  height: 400vh;
+  position: relative;
+}
+
+/* ─── Canvas Wrapper ─── */
+.canvas-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  overflow: hidden;
+  background-color: #ffffff; /* keep landing page canvas pure white */
+}
+
+#video-canvas {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: sepia(0.2) saturate(1.1) brightness(1.05);
+}
+
+.vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(255,255,255,0) 40%, rgba(240,236,233,0.8) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.light-rays {
+  display: none; /* remove neon/glowing light rays for clean look */
+}
+
+/* ─── Text Overlays ─── */
+.text-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  pointer-events: none;
+}
+
+.text-start {
+  font-family: var(--font-cormorant);
+  text-align: center;
+}
+
+.text-start h1 {
+  font-size: 5vw;
+  color: var(--maroon-primary);
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.text-start p {
+  font-size: 1.5vw;
+  color: var(--gold-dark);
+  letter-spacing: 0.5em;
+  font-weight: 300;
+  font-style: italic;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .text-start h1 { font-size: 8vw; }
+  .text-start p { font-size: 3vw; }
+}
+
+/* ─── Welcome Animation Text ─── */
+.welcome-seq {
+  pointer-events: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.welcome-text-container {
+  text-align: center;
+}
+
+.welcome-small {
+  font-family: var(--font-cormorant);
+  font-size: 2.5vw;
+  color: var(--text-color);
+  letter-spacing: 0.3em;
+  font-weight: 300;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+  opacity: 0.9;
+}
+
+.welcome-large {
+  font-family: var(--font-cormorant);
+  font-size: clamp(1.5rem, 4.5vw, 4.5rem); /* Fits Bhaskararajapuram perfectly */
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold-primary) 50%, var(--maroon-primary) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: 0.1em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+@media (max-width: 768px) {
+  .welcome-small { font-size: 4vw; }
+  .welcome-large { font-size: clamp(1.2rem, 7vw, 2.5rem); }
+}
+
+/* ─── Typography Components ─── */
+.section-heading {
+  font-family: var(--font-cormorant);
+  font-weight: 600;
+  color: var(--maroon-primary);
+  margin-bottom: 1rem;
+}
+
+.body-text {
+  font-family: var(--font-cormorant);
+  font-weight: 400;
+  color: var(--text-color);
+  line-height: 1.7;
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+}
+
+.body-text-italic {
+  font-style: italic;
+  color: #6a605c;
+}
+
+/* ─── NavBar ─── */
+.divine-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(250, 243, 231, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(196, 122, 90, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+}
+
+.divine-nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.divine-nav-logo {
+  font-family: var(--font-cormorant);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--maroon-primary);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  transition: color 0.3s ease;
+}
+.divine-nav-logo:hover {
+  color: var(--gold-dark);
+}
+
+.divine-nav-links {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.divine-nav-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-family: var(--font-cormorant);
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  font-weight: 500;
+}
+
+.divine-nav-links a:hover {
+  color: var(--maroon-light);
+  transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+  .divine-nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .divine-nav-links {
+    margin-top: 1rem;
+  }
+}
+
+/* ─── About Page Layout ─── */
+.hero-section {
+  position: relative;
+  text-align: center;
+  padding: 8rem 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  overflow: hidden;
+  background-color: var(--bg-color-alt);
+}
+
+.hero-video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  opacity: 1; /* full visibility */
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.1), var(--bg-color));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-size: 3rem;
+  letter-spacing: 0.05em;
+  color: var(--maroon-primary);
+}
+
+.hero-tagline {
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.5rem; }
+}
+
+.about-content {
+  position: relative;
+  z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 4rem 2rem 6rem;
+}
+
+/* Background blobs to reveal glassmorphism */
+.about-content::before,
+.about-content::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  z-index: -1;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.about-content::before {
+  width: 500px;
+  height: 500px;
+  background: var(--border-accent);
+  top: 20%;
+  left: -10%;
+}
+
+.about-content::after {
+  width: 600px;
+  height: 600px;
+  background: var(--gold-primary);
+  bottom: 0%;
+  right: -10%;
+}
+
+/* ─── Flanking GIFs ─── */
+.about-text-with-flanks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+  margin-bottom: 4rem;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.center-text {
+  flex: 0 1 700px;
+  text-align: center;
+}
+
+.flank {
+  flex: 0 0 250px;
+  display: flex;
+  justify-content: center;
+}
+
+.flank-gif {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 12px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05); /* clean shadow */
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: transform 0.5s ease;
+}
+
+.flank-gif:hover {
+  transform: scale(1.05);
+}
+
+@media (max-width: 1024px) {
+  .about-text-with-flanks {
+    flex-direction: column;
+    gap: 2rem;
+  }
+  .flank {
+    display: none;
+  }
+}
+
+/* ─── Temple Card ─── */
+.temple-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+@media (min-width: 768px) {
+  .temple-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .temple-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.temple-card {
+  border: 1px solid rgba(196, 122, 90, 0.4);
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(250, 243, 231, 0.45);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
+  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.temple-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(133, 55, 60, 0.1);
+  border-color: rgba(196, 122, 90, 0.6);
+  background: rgba(250, 243, 231, 0.85);
+}
+
+.temple-card-image-placeholder {
+  height: 200px;
+  background: linear-gradient(135deg, var(--bg-color-alt) 0%, var(--gold-light) 100%);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.temple-card-content {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.temple-card-title {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: var(--maroon-primary);
+}
+
+.temple-card-desc {
+  font-size: 1rem;
+  flex-grow: 1;
+  color: var(--text-color);
+}
+
+.temple-card-link {
+  color: var(--gold-dark);
+  text-decoration: none;
+  font-family: var(--font-cormorant);
+  font-weight: 600;
+  font-style: italic;
+  font-size: 1.1rem;
+  margin-top: 1rem;
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.temple-card-link:hover {
+  color: var(--maroon-primary);
+  transform: translateX(4px);
+}

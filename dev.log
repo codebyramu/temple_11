@@ -1,0 +1,10 @@
+
+> temple@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.9 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.31.27:3000
+✓ Ready in 251ms
+
+ GET / 200 in 280ms (next.js: 109ms, application-code: 171ms)
