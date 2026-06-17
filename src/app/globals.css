@@ -441,8 +441,10 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   height: auto;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
-  border: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: none !important;
+  filter: none !important;
+  border: none !important;
+  background: transparent !important;
   transition: transform 0.5s ease;
 }
 
