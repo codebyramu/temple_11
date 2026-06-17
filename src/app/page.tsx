@@ -233,6 +233,35 @@ export default function Home() {
             },
           });
 
+          // Animate GIFs flying in from off-screen
+          gsap.fromTo('.left-flank', 
+            { x: -300, opacity: 0, rotation: -15 },
+            { 
+              x: 0, opacity: 1, rotation: 0, 
+              ease: 'back.out(1.2)', 
+              scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%',
+                end: 'top 30%',
+                scrub: 1
+              }
+            }
+          );
+          
+          gsap.fromTo('.right-flank', 
+            { x: 300, opacity: 0, rotation: 15 },
+            { 
+              x: 0, opacity: 1, rotation: 0, 
+              ease: 'back.out(1.2)', 
+              scrollTrigger: {
+                trigger: '.about-content',
+                start: 'top 80%',
+                end: 'top 30%',
+                scrub: 1
+              }
+            }
+          );
+
 
 
           // Bell at 60%
