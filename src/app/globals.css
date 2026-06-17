@@ -520,13 +520,23 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.8s ease;
+  z-index: 1;
+}
+
+.showcase-image.prev {
+  transform: translateY(-100%);
   opacity: 0;
-  transition: opacity 1.2s ease; /* fade out slowly */
+}
+
+.showcase-image.next {
+  transform: translateY(100%);
+  opacity: 0;
 }
 
 .showcase-image.active {
+  transform: translateY(0);
   opacity: 1;
-  transition: opacity 0.4s ease; /* fade in quickly */
   z-index: 2;
 }
 

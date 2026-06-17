@@ -125,14 +125,21 @@ export function TempleShowcase() {
         {/* RIGHT SIDE (Featured Content) */}
         <div className="showcase-content">
           <div className="showcase-image-container">
-             {TEMPLES.map((temple, idx) => (
-                <img 
-                  key={temple.image}
-                  src={temple.image}
-                  alt={temple.name}
-                  className={`showcase-image ${idx === activeIndex ? 'active' : ''}`}
-                />
-             ))}
+             {TEMPLES.map((temple, idx) => {
+                let positionClass = '';
+                if (idx === activeIndex) positionClass = 'active';
+                else if (idx < activeIndex) positionClass = 'prev';
+                else positionClass = 'next';
+
+                return (
+                  <img 
+                    key={temple.image}
+                    src={temple.image}
+                    alt={temple.name}
+                    className={`showcase-image ${positionClass}`}
+                  />
+                );
+             })}
 
              <div className="showcase-details-wrapper">
                 {TEMPLES.map((temple, idx) => (
