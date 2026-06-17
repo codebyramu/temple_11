@@ -8,7 +8,7 @@ import Lenis from 'lenis';
 import { NavBar } from '@/components/NavBar';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { BodyText } from '@/components/ui/BodyText';
-import { TempleCard } from '@/components/ui/TempleCard';
+import { TempleShowcase } from '@/components/ui/TempleShowcase';
 import { HeroVideo } from '@/components/HeroVideo';
 
 const volumeIcon = (
@@ -314,11 +314,11 @@ export default function Home() {
           top: '24px',
           right: '24px',
           zIndex: 9999,
-          background: 'rgba(250, 243, 231, 0.5)',
+          background: 'rgba(10, 9, 8, 0.5)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          border: '1px solid rgba(196, 122, 90, 0.3)',
-          color: 'var(--maroon-primary)',
+          border: '1px solid rgba(201, 162, 39, 0.3)',
+          color: 'var(--gold-primary)',
           width: '48px',
           height: '48px',
           borderRadius: '50%',
@@ -326,7 +326,7 @@ export default function Home() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.05)',
+          boxShadow: '0 8px 32px rgba(0, 0, 0, 0.5)',
           transition: 'all 0.3s ease'
         }}
         aria-label={isMuted ? 'Unmute audio' : 'Mute audio'}
@@ -432,30 +432,9 @@ export default function Home() {
               <img src="/images/gif/gif_2.gif" alt="Sacred Ritual Right" className="flank-gif" />
             </div>
           </div>
-
-          <div className="temple-grid">
-            <TempleCard 
-              title="Shri Bhaskareswarar Temple" 
-              description="The central landmark of our village's spiritual life." 
-              href="/temples/bhaskareswarar" 
-            />
-            <TempleCard 
-              title="Shri Kothanda Ramaswamy Temple" 
-              description="A serene sanctuary dedicated to Lord Rama." 
-              href="/temples/kothanda-ramaswamy" 
-            />
-            <TempleCard 
-              title="Shri Vishnu Durgai Temple" 
-              description="Home to the powerful and protective Goddess Durgai." 
-              href="/temples/vishnu-durgai" 
-            />
-            <TempleCard 
-              title="Shri Bhaskareswarar Memorial" 
-              description="A tribute to the enduring legacy of Bhaskararaya." 
-              href="/memorial" 
-            />
-          </div>
         </section>
+
+        <TempleShowcase />
       </div>
     </>
   );

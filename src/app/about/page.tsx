@@ -1,7 +1,7 @@
 import { NavBar } from '@/components/NavBar';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 import { BodyText } from '@/components/ui/BodyText';
-import { TempleCard } from '@/components/ui/TempleCard';
+import { TempleShowcase } from '@/components/ui/TempleShowcase';
 import { HeroVideo } from '@/components/HeroVideo';
 
 export const metadata = {
@@ -32,30 +32,9 @@ export default function About() {
         <BodyText>
           The Srinivas Rama Trust plays a crucial role in the maintenance of the village's sacred spaces and the organization of annual celebrations, keeping the rich traditions alive for future generations.
         </BodyText>
-
-        <div className="temple-grid">
-          <TempleCard 
-            title="Shri Bhaskareswarar Temple" 
-            description="The central landmark of our village's spiritual life." 
-            href="/temples/bhaskareswarar" 
-          />
-          <TempleCard 
-            title="Shri Kothanda Ramaswamy Temple" 
-            description="A serene sanctuary dedicated to Lord Rama." 
-            href="/temples/kothanda-ramaswamy" 
-          />
-          <TempleCard 
-            title="Shri Vishnu Durgai Temple" 
-            description="Home to the powerful and protective Goddess Durgai." 
-            href="/temples/vishnu-durgai" 
-          />
-          <TempleCard 
-            title="Shri Bhaskareswarar Memorial" 
-            description="A tribute to the enduring legacy of Bhaskararaya." 
-            href="/memorial" 
-          />
-        </div>
       </section>
+
+      <TempleShowcase />
     </main>
   );
 }

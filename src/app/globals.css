@@ -1,16 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Shojumaru&display=swap');
 
 :root {
-  --gold-primary: #e69138; /* creamy saffron */
-  --gold-light: #f6b26b; /* light creamy saffron */
-  --gold-dark: #b45f06; /* dark saffron */
-  --bg-color: #F6E8D0; /* Base Background */
-  --bg-color-alt: #F3E3C7; /* Alternate Section */
-  --card-bg: #FAF3E7; /* Card Background */
-  --border-accent: #C47A5A; /* Border Accent */
-  --text-color: #3b3331; /* smoke grey */
-  --maroon-primary: #8B2E2E; /* Heading Color */
-  --maroon-light: #a34e54;
+  --gold-primary: #C9A227; /* Temple Gold */
+  --gold-light: #E0C16A; 
+  --gold-dark: #8B6B3F; /* Muted Bronze */
+  --bg-color: #0A0908; /* Dark Creamy Black */
+  --bg-color-alt: #1C1A17; /* Thick Creamy Black */
+  --card-bg: #24221F; 
+  --border-accent: #8B6B3F; 
+  --text-color: #EAE0D0; /* Creamy White Text */
+  --maroon-primary: #C9A227; /* Replace Maroon with Gold for elegance */
+  --maroon-light: #E0C16A;
   --font-cormorant: 'Cormorant Garamond', serif;
 }
 
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 #loading-screen {
   position: fixed;
   inset: 0;
-  background-color: #ffffff; /* keep landing page pure white */
+  background-color: var(--bg-color); /* blend with dark mode */
   z-index: 9999;
   display: flex;
   flex-direction: column;
@@ -53,7 +53,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   font-weight: 400;
-  text-shadow: 0 4px 15px rgba(139, 46, 46, 0.4);
+  text-shadow: none; /* removed glowing neon */
 }
 
 .progress-bar-container {
@@ -95,20 +95,20 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   height: 100vh;
   z-index: 0;
   overflow: hidden;
-  background-color: #ffffff; /* keep landing page canvas pure white */
+  background-color: var(--bg-color); /* blend with dark mode */
 }
 
 #video-canvas {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  filter: sepia(0.2) saturate(1.1) brightness(1.05);
+  filter: sepia(0.2) saturate(1.1) brightness(0.6) contrast(1.1); /* dark cinematic feel */
 }
 
 .vignette {
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle, rgba(255,255,255,0) 40%, rgba(240,236,233,0.8) 100%);
+  background: radial-gradient(circle, rgba(10,9,8,0) 40%, rgba(10,9,8,0.95) 100%);
   pointer-events: none;
   z-index: 1;
 }
@@ -182,6 +182,13 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 
 .welcome-text-container {
   text-align: center;
+  background: rgba(20, 18, 16, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 30px;
+  padding: 4rem 5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
 }
 
 .welcome-small {
@@ -241,11 +248,11 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(250, 243, 231, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(196, 122, 90, 0.2);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  background: rgba(10, 9, 8, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-bottom: 1px solid rgba(201, 162, 39, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease;
 }
 
@@ -270,7 +277,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   transition: color 0.3s ease;
 }
 .divine-nav-logo:hover {
-  color: var(--gold-dark);
+  color: var(--text-color);
 }
 
 .divine-nav-links {
@@ -330,7 +337,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 .hero-video-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(255,255,255,0.1), var(--bg-color));
+  background: linear-gradient(to bottom, rgba(10,9,8,0.4), var(--bg-color));
   z-index: 1;
 }
 
@@ -339,6 +346,13 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   z-index: 2;
   max-width: 800px;
   margin: 0 auto;
+  background: rgba(10, 9, 8, 0.3);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 4rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
 }
 
 .hero-title {
@@ -407,6 +421,13 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 .center-text {
   flex: 0 1 700px;
   text-align: center;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 24px;
+  padding: 3rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
 }
 
 .flank {
@@ -420,7 +441,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   height: auto;
   object-fit: contain;
   border-radius: 12px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05); /* clean shadow */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
   border: 1px solid rgba(0, 0, 0, 0.05);
   transition: transform 0.5s ease;
 }
@@ -439,80 +460,234 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   }
 }
 
-/* ─── Temple Card ─── */
-.temple-grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2rem;
-  margin-top: 4rem;
+/* ─── Temple Showcase ─── */
+.temple-showcase-container {
+  background: rgba(28, 26, 23, 0.6);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 4rem 0;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
-@media (min-width: 768px) {
-  .temple-grid { grid-template-columns: repeat(2, 1fr); }
-}
-
-@media (min-width: 1024px) {
-  .temple-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-.temple-card {
-  border: 1px solid rgba(196, 122, 90, 0.4);
-  border-radius: 12px;
+.temple-showcase {
+  display: flex;
+  width: 100vw;
+  margin: 0;
+  height: 100%;
   overflow: hidden;
-  background: rgba(250, 243, 231, 0.45);
-  backdrop-filter: blur(24px);
-  -webkit-backdrop-filter: blur(24px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
+}
+
+/* LEFT SIDE */
+.showcase-nav {
+  width: 30%; /* adjusted for 70% image */
+  position: relative;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: flex-start; /* complete left */
+  padding-left: 60px;
 }
 
-.temple-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 15px 35px rgba(133, 55, 60, 0.1);
-  border-color: rgba(196, 122, 90, 0.6);
-  background: rgba(250, 243, 231, 0.85);
-}
-
-.temple-card-image-placeholder {
-  height: 200px;
-  background: linear-gradient(135deg, var(--bg-color-alt) 0%, var(--gold-light) 100%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.temple-card-content {
-  padding: 1.5rem;
+.showcase-nav-item {
+  position: absolute;
+  left: 60px; /* complete left */
+  cursor: pointer;
   display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.temple-card-title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-  color: var(--maroon-primary);
-}
-
-.temple-card-desc {
-  font-size: 1rem;
-  flex-grow: 1;
-  color: var(--text-color);
-}
-
-.temple-card-link {
-  color: var(--gold-dark);
-  text-decoration: none;
+  align-items: center;
+  gap: 12px;
+  transform-origin: left center;
+  
   font-family: var(--font-cormorant);
-  font-weight: 600;
-  font-style: italic;
-  font-size: 1.1rem;
-  margin-top: 1rem;
-  display: inline-block;
-  transition: color 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+  user-select: none;
+  /* transition removed for smooth react scroll interpolation */
 }
 
-.temple-card-link:hover {
-  color: var(--maroon-primary);
-  transform: translateX(4px);
+.showcase-nav-item.active {
+  /* scale/color handled inline via React for smooth scroll */
+}
+
+.nav-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #C9A227;
+}
+
+/* RIGHT SIDE */
+.showcase-content {
+  width: 70%; /* cover 70% of screen */
+  padding: 0; /* no padding, stretch edge to edge */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  height: 100vh;
+}
+
+.showcase-image-container {
+  width: 100%;
+  position: relative;
+  height: 100vh; /* completely massive full height */
+  border-radius: 0; /* flush with screen edges */
+  overflow: hidden;
+  background: #FFFFFF;
+}
+
+.showcase-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1.2s ease; /* fade out slowly */
+}
+
+.showcase-image.active {
+  opacity: 1;
+  transition: opacity 0.4s ease; /* fade in quickly */
+  z-index: 2;
+}
+
+.showcase-details-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.1) 40%, transparent 100%);
+  pointer-events: none; /* Let clicks pass through if needed */
+}
+
+.showcase-details {
+  position: absolute;
+  top: 60px;
+  left: 60px;
+  right: 60px;
+  opacity: 0;
+  transform: translateY(-15px);
+  transition: all 0.8s ease; /* fade out slowly */
+}
+
+.showcase-details.active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.4s ease; /* fade in quickly */
+  z-index: 2;
+}
+
+.showcase-title {
+  font-family: var(--font-cormorant);
+  font-size: clamp(48px, 5vw, 64px);
+  color: #EAE0D0;
+  font-weight: 500;
+  margin-bottom: 24px;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.showcase-icons {
+  font-size: 20px;
+  color: #8B6B3F;
+  font-family: system-ui, -apple-system, sans-serif;
+  letter-spacing: 4px;
+  font-weight: 300;
+}
+
+.showcase-tags {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.showcase-tag {
+  padding: 6px 16px;
+  border-radius: 30px;
+  color: #C9A227;
+  font-size: 14px;
+  font-family: var(--font-cormorant);
+  letter-spacing: 0.05em;
+  background: rgba(201, 162, 39, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+.showcase-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(234, 224, 208, 0.15);
+  border: none;
+  margin-bottom: 24px;
+}
+
+.showcase-metadata {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  font-size: 16px;
+  font-family: var(--font-cormorant);
+  color: #EAE0D0;
+  font-style: italic;
+}
+
+.metadata-left {
+  opacity: 0.8;
+}
+
+.metadata-right {
+  opacity: 0.8;
+}
+
+@media (max-width: 1024px) {
+  .temple-showcase {
+    flex-direction: column;
+  }
+  .showcase-nav {
+    width: 100%;
+    align-items: center;
+    padding-left: 0;
+    height: 20vh;
+    min-height: 120px;
+    background: var(--bg-color-alt); /* ensure nav is visible */
+    z-index: 20;
+  }
+  .showcase-nav-item {
+    left: 0;
+    width: 100%;
+    justify-content: center;
+    transform-origin: center center; /* fix scale breaking center alignment on mobile */
+  }
+  .showcase-content {
+    width: 100%;
+    height: 80vh;
+    padding: 0;
+    justify-content: flex-start;
+  }
+  .showcase-image-container {
+    width: 100%;
+    height: 80vh; /* fills the rest of the screen */
+  }
+  .showcase-details {
+    top: 30px;
+    left: 20px;
+    right: 20px;
+  }
+  .showcase-title {
+    font-size: 32px;
+    margin-bottom: 12px;
+  }
+  .showcase-tags {
+    margin-bottom: 15px;
+  }
 }
