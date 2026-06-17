@@ -107,12 +107,13 @@ export function TempleShowcase() {
                 key={temple.id} 
                 className={`showcase-nav-item ${isActive ? 'active' : ''}`}
                 style={{
-                  transform: `translateY(calc(-50% + ${offset * 85}px)) scale(${scale})`, // strictly linear scroll, perfectly centered
+                  '--offset': offset,
+                  '--scale': scale,
                   opacity: opacity,
                   color: color,
                   fontWeight: distance < 0.5 ? 600 : 400,
-                  fontSize: '18px' // Base size, scaled smoothly
-                }}
+                  fontSize: '18px'
+                } as React.CSSProperties}
                 onClick={() => {}}
               >
                 {isActive && <span className="nav-dot" style={{ transform: `scale(${1/scale})`, backgroundColor: '#C9A227' }} />}

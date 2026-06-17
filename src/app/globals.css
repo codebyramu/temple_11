@@ -375,7 +375,6 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   padding: 8rem 0;
   max-width: 1400px;
   margin: 0 auto;
-  overflow: hidden;
 }
 
 /* ─── Flanking GIFs ─── */
@@ -430,7 +429,12 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
     gap: 2rem;
   }
   .flank {
-    display: none;
+    display: flex;
+    width: 100%;
+    margin: 1rem 0;
+  }
+  .flank-gif {
+    max-height: 180px;
   }
 }
 
@@ -476,6 +480,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   align-items: center;
   gap: 12px;
   transform-origin: left center;
+  transform: translateY(calc(-50% + var(--offset) * 85px)) scale(var(--scale));
   
   font-family: var(--font-cormorant);
   white-space: nowrap;
@@ -644,17 +649,22 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
     width: 100%;
     align-items: center;
     padding-left: 0;
-    height: 20vh;
-    min-height: 120px;
-    background: var(--bg-color-alt); /* ensure nav is visible */
+    height: 15vh;
+    min-height: 100px;
+    background: rgba(10, 9, 8, 0.9);
     z-index: 20;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    overflow: hidden; /* we are faking horizontal scroll via transform */
   }
   .showcase-nav-item {
-    left: 0;
+    left: 50%;
     top: 50%;
-    width: 100%;
+    width: auto;
     justify-content: center;
-    transform-origin: center center; /* fix scale breaking center alignment on mobile */
+    transform-origin: center center;
+    transform: translate(calc(-50% + var(--offset) * 160px), -50%) scale(var(--scale));
   }
   .showcase-content {
     width: 100%;
