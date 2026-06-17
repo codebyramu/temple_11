@@ -520,23 +520,23 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 1s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.8s ease;
+  opacity: 1; /* Always 1 to prevent flashing */
+  transition: transform 0.8s cubic-bezier(0.7, 0, 0.3, 1);
   z-index: 1;
 }
 
 .showcase-image.prev {
-  transform: translateY(-100%);
-  opacity: 0;
+  transform: translateX(0); /* Parks underneath */
+  z-index: 1;
 }
 
 .showcase-image.next {
-  transform: translateY(100%);
-  opacity: 0;
+  transform: translateX(100%); /* Waits off-screen right */
+  z-index: 3; /* Slides out on top when scrolling back */
 }
 
 .showcase-image.active {
-  transform: translateY(0);
-  opacity: 1;
+  transform: translateX(0); /* Slides into view */
   z-index: 2;
 }
 
