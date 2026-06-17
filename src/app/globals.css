@@ -92,7 +92,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   z-index: 0;
   overflow: hidden;
   background-color: var(--bg-color); /* blend with dark mode */
@@ -168,8 +168,17 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 }
 
 @media (max-width: 768px) {
-  .text-start h1 { font-size: 8vw; }
+  .text-start h1 { 
+    font-size: 4.5vw; 
+    letter-spacing: 0.1em;
+    white-space: nowrap; 
+  }
   .text-start p { font-size: 3vw; }
+  .loading-text {
+    font-size: 5vw;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+  }
 }
 
 /* ─── Welcome Animation Text ─── */
@@ -303,10 +312,16 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 @media (max-width: 768px) {
   .divine-nav-container {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center; /* center the logo */
   }
   .divine-nav-links {
     margin-top: 1rem;
+    gap: 1.2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .divine-nav-links a {
+    font-size: 14px;
   }
 }
 
@@ -447,7 +462,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   padding: 4rem 0;
   width: 100%;
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   align-items: center;
 }
@@ -507,13 +522,13 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   flex-direction: column;
   justify-content: center;
   position: relative;
-  height: 100vh;
+  height: 100dvh;
 }
 
 .showcase-image-container {
   width: 100%;
   position: relative;
-  height: 100vh; /* completely massive full height */
+  height: 100dvh; /* completely massive full height */
   border-radius: 0; /* flush with screen edges */
   overflow: hidden;
   background: #000000; /* Prevent white flashes during crossfades */
@@ -649,7 +664,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
     width: 100%;
     align-items: center;
     padding-left: 0;
-    height: 15vh;
+    height: 15dvh;
     min-height: 100px;
     background: rgba(10, 9, 8, 0.9);
     z-index: 20;
@@ -657,6 +672,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
     bottom: 0;
     left: 0;
     overflow: hidden; /* we are faking horizontal scroll via transform */
+    padding-bottom: 25px; /* clear Android bottom navigation bar */
   }
   .showcase-nav-item {
     left: 50%;
@@ -677,7 +693,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
     height: 80vh; /* fills the rest of the screen */
   }
   .showcase-details {
-    top: 30px;
+    top: 120px; /* lower to avoid collision with nav */
     left: 20px;
     right: 20px;
   }
