@@ -469,6 +469,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
 
 .showcase-nav-item {
   position: absolute;
+  top: 50%;
   left: 60px; /* complete left */
   cursor: pointer;
   display: flex;
@@ -638,6 +639,7 @@ h1, h2, h3, h4, h5, h6, .section-heading, .temple-card-title {
   }
   .showcase-nav-item {
     left: 0;
+    top: 50%;
     width: 100%;
     justify-content: center;
     transform-origin: center center; /* fix scale breaking center alignment on mobile */

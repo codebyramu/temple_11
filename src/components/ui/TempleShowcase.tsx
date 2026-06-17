@@ -107,7 +107,7 @@ export function TempleShowcase() {
                 key={temple.id} 
                 className={`showcase-nav-item ${isActive ? 'active' : ''}`}
                 style={{
-                  transform: `translateY(${offset * 85}px) scale(${scale})`, // strictly linear scroll
+                  transform: `translateY(calc(-50% + ${offset * 85}px)) scale(${scale})`, // strictly linear scroll, perfectly centered
                   opacity: opacity,
                   color: color,
                   fontWeight: distance < 0.5 ? 600 : 400,
